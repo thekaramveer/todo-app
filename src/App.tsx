@@ -16,7 +16,7 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px" }} className='sketchy-div main-container'>
       <h1>Todo App</h1>
 
       <input

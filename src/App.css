@@ -1,10 +1,16 @@
-@font-face {
-    font-family: 'Excalifont';
-    src: url('/fonts/Excalifont-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
+.sketchy-div {
+    /* Give it a thick, marker-like border */
+    border: 3px solid #2d2d2d;
+    padding: 32px;
+    background-color: #ffffff;
 
-body {
-    font-family: 'Excalifont', sans-serif;
+    /* The Magic: Irregular border radii to warp the corners */
+    /* format: top-left top-right bottom-right bottom-left / top-left top-right bottom-right bottom-left */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+
+    /* Optional: A slight rotation makes it feel less rigid */
+    transform: rotate(-1deg);
+
+    /* Optional: A harsh box-shadow adds to the flat, doodle style */
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
 }
