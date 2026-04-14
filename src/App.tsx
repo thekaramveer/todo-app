@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from './redux/store'
 import { addTodo, deleteTodo, toggleTodo } from './redux/features/todoSlice'
 import './App.css'
-function App() {
 
+function App() {
   const [text, setText] = useState('')
   const todos = useSelector((state: RootState) => state.todos.todos)
   const dispatch = useDispatch()
@@ -16,30 +16,39 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "20px" }} className='sketchy-div main-container'>
-      <h1>Todo App</h1>
+    <div className="sketchy-container">
+      <h1 className="sketchy-title">Todo App</h1>
 
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter todo..."
-      />
-      <button onClick={handleAdd}>Add</button>
+      <div className="input-group">
+        <input
+          className="sketchy-input"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Enter todo..."
+          onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
+        />
+        <button className="sketchy-button" onClick={handleAdd}>Add</button>
+      </div>
 
-      <ul>
+      <ul className="sketchy-list">
         {todos.map(todo => (
-          <li key={todo.id}>
+          <li key={todo.id} className="sketchy-list-item">
             <span
               onClick={() => dispatch(toggleTodo(todo.id))}
+              className="sketchy-text"
               style={{
                 textDecoration: todo.completed ? 'line-through' : 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                color: todo.completed ? '#888' : '#000'
               }}
             >
               {todo.text}
             </span>
 
-            <button onClick={() => dispatch(deleteTodo(todo.id))}>
+            <button
+              className="delete-btn"
+              onClick={() => dispatch(deleteTodo(todo.id))}
+            >
               ❌
             </button>
           </li>

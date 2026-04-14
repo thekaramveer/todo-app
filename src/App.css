@@ -1,16 +1,107 @@
-.sketchy-div {
-    /* Give it a thick, marker-like border */
-    border: 3px solid #2d2d2d;
+/* Centers the app on the page and sets the handwriting font */
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* The main warped "paper" card */
+.sketchy-container {
+    width: 400px;
+    margin: 50px auto;
     padding: 32px;
     background-color: #ffffff;
-
-    /* The Magic: Irregular border radii to warp the corners */
-    /* format: top-left top-right bottom-right bottom-left / top-left top-right bottom-right bottom-left */
+    border: 3px solid #2d2d2d;
+    /* The warped corners magic */
     border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-
-    /* Optional: A slight rotation makes it feel less rigid */
     transform: rotate(-1deg);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+}
 
-    /* Optional: A harsh box-shadow adds to the flat, doodle style */
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+.sketchy-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #2d2d2d;
+    /* text-decoration: underline;
+    text-decoration-style: wavy; */
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+/* The text input with offset border radii */
+.sketchy-input {
+    flex: 1;
+    background-color: #fff;
+    border: 2px solid #2d2d2d;
+    border-radius: 10px 255px 15px 225px / 255px 15px 225px 15px;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* The main Add button */
+.sketchy-button {
+    background-color: #fff;
+    border: 2px solid #2d2d2d;
+    border-radius: 225px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.1s ease-in-out;
+}
+
+.sketchy-button:active {
+    background-color: #eee;
+    transform: translateY(2px) rotate(1deg);
+}
+
+/* Todo List Container */
+.sketchy-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Todo Item */
+.sketchy-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 2px dashed #ccc;
+}
+
+.sketchy-list-item:last-child {
+    border-bottom: none;
+}
+
+.sketchy-text {
+    font-size: 18px;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+/* The small delete button */
+.delete-btn {
+    background-color: #ffcfcf;
+    border: 2px solid #2d2d2d;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+    transition: all 0.1s ease;
+}
+
+.delete-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.8);
 }
