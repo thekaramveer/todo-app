@@ -6,6 +6,8 @@ import './App.css'
 
 function App() {
   const [text, setText] = useState('')
+  const [isAnimating, setIsAnimating] = useState(false)
+
   const todos = useSelector((state: RootState) => state.todos.todos)
   const dispatch = useDispatch()
 
@@ -13,10 +15,16 @@ function App() {
     if (text.trim() === '') return
     dispatch(addTodo(text))
     setText('')
+
+    //  animation trigger
+    setIsAnimating(true)
+    setTimeout(() => {
+      setIsAnimating(false)
+    }, 300)
   }
 
   return (
-    <div className="sketchy-container">
+    <div className={`sketchy-container ${isAnimating ? 'animate-pop' : ''}`}>
       <h1 className="sketchy-title">Todo App</h1>
 
       <div className="input-group">
