@@ -7,6 +7,8 @@ import './App.css'
 function App() {
   const [text, setText] = useState('')
   const [isAnimating, setIsAnimating] = useState(false)
+  //for delete animation
+  const [deletingIds, setDeletingIds] = useState<string[]>([])
 
   const todos = useSelector((state: RootState) => state.todos.todos)
   const dispatch = useDispatch()
@@ -15,12 +17,22 @@ function App() {
     if (text.trim() === '') return
     dispatch(addTodo(text))
     setText('')
-
-    //  animation trigger
     setIsAnimating(true)
     setTimeout(() => {
       setIsAnimating(false)
     }, 300)
+  }
+
+  const handleDelete = (id: string) => {
+    // Add the ID to trigger the CSS class
+    setDeletingIds((prev) => [...prev, id])
+
+    // Wait 100ms before dispatching to Redux
+    setTimeout(() => {
+      dispatch(deleteTodo(id.toString()))
+      // Clean up the deletingIds state
+      setDeletingIds((prev) => prev.filter((item) => item !== id))
+    }, 100)
   }
 
   return (
@@ -40,7 +52,11 @@ function App() {
 
       <ul className="sketchy-list">
         {todos.map(todo => (
-          <li key={todo.id} className="sketchy-list-item">
+          <li
+            key={todo.id}
+
+            className={`sketchy-list-item ${deletingIds.includes(todo.id) ? 'deleting' : ''}`}
+          >
             <span
               onClick={() => dispatch(toggleTodo(todo.id))}
               className="sketchy-text"
@@ -55,7 +71,7 @@ function App() {
 
             <button
               className="delete-btn"
-              onClick={() => dispatch(deleteTodo(todo.id))}
+              onClick={() => handleDelete(todo.id)}
             >
               ❌
             </button>

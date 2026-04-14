@@ -78,6 +78,9 @@ body {
     align-items: center;
     padding: 12px 0;
     border-bottom: 2px dashed #ccc;
+
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+    transform-origin: left center;
 }
 
 .sketchy-list-item:last-child {
@@ -127,4 +130,13 @@ body {
 /* will be applied using react */
 .animate-pop {
     animation: container-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* deleting animation */
+.sketchy-list-item.deleting {
+    opacity: 0;
+    transform: translateX(50px) scale(0.8) rotate(2deg);
+    /* squish the padding to 0 so the list collapses smoothly */
+    padding: 0;
+    border-bottom-color: transparent;
 }
