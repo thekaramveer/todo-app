@@ -6,6 +6,7 @@ import './App.css'
 
 function App() {
   const [text, setText] = useState('')
+  const MAX_CHARS = 70;
   const [isAnimating, setIsAnimating] = useState(false)
   //for delete animation
   const [deletingIds, setDeletingIds] = useState<string[]>([])
@@ -45,10 +46,19 @@ function App() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Enter todo..."
+          maxLength={MAX_CHARS}
           onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
         />
         <button className="sketchy-button" onClick={handleAdd}>Add</button>
       </div>
+
+      {/* render the warning if user hit the word limit */}
+
+      {text.length >= MAX_CHARS && (
+        <div className="sketchy-warning animate-shake">
+          Whoa there! You've reached the max limit.
+        </div>
+      )}
 
       <ul className="sketchy-list">
         {todos.map(todo => (
