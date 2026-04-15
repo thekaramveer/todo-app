@@ -14,3 +14,11 @@ textarea,
 button {
     font-family: 'Excalifont', sans-serif;
 }
+
+#root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    /* Keeps the container centered on desktop */
+}

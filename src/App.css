@@ -1,14 +1,20 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
     margin: 0;
     min-height: 100vh;
 }
 
 /* The main warped "paper" card */
 .sketchy-container {
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
     margin: 50px auto;
     padding: 32px;
     background-color: #ffffff;
@@ -139,4 +145,43 @@ body {
     /* squish the padding to 0 so the list collapses smoothly */
     padding: 0;
     border-bottom-color: transparent;
+}
+
+
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 500px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        /* Prevents tiny accidental side-scrolling */
+    }
+
+
+    .sketchy-container {
+        width: 100vw;
+        padding: 20px;
+        margin: 10px auto;
+        /* Reduce shadow slightly so it doesn't look overwhelming on mobile */
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+    }
+
+
+
+    .input-group {
+        flex-direction: column;
+        /* Stacks the input and button on very tiny screens */
+        gap: 12px;
+    }
+
+    .sketchy-button {
+        width: 100%;
+        /* Makes the button full width when stacked */
+    }
+
+    .sketchy-text {
+        font-size: 16px;
+        /* Slightly smaller text for mobile */
+    }
 }
