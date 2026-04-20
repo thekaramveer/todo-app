@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from './redux/store'
-import { addTodo, deleteTodo, toggleTodo } from './redux/features/todoSlice'
+import { addTodo, deleteTodo, toggleTodo } from './redux/features/todos/todoSlice'
 import './App.css'
+import { useAppDispatch, useAppSelector } from './redux/hooks'
 
 function App() {
   const [text, setText] = useState('')
@@ -11,8 +10,8 @@ function App() {
   //for delete animation
   const [deletingIds, setDeletingIds] = useState<string[]>([])
 
-  const todos = useSelector((state: RootState) => state.todos.todos)
-  const dispatch = useDispatch()
+  const todos = useAppSelector((state) => state.todos.todos);
+  const dispatch = useAppDispatch();
 
   const handleAdd = () => {
     if (text.trim() === '') return
