@@ -35,9 +35,19 @@ npm run dev
 
 ```
 src/
- ├── redux/
- ├── App.tsx
- └── main.tsx
+├── redux/                 # Redux state management
+│   ├── store.ts           # Store configuration + persistence setup
+│   ├── hooks.ts           # Typed hooks (useAppDispatch, useAppSelector)
+│   └── features/
+│       └── todos/
+│           ├── todoSlice.ts   # Todo slice (actions + reducers)
+│           └── types.ts       # TypeScript types
+│
+├── utils/
+│   └── localStorage.ts    # LocalStorage helpers (load/save todos)
+│
+├── App.tsx                # Main app component
+└── main.tsx               # Entry point
 ```
 
 ---
