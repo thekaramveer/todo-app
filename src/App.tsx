@@ -52,7 +52,6 @@ function App() {
       </div>
 
       {/* render the warning if user hit the word limit */}
-
       {text.length >= MAX_CHARS && (
         <div className="sketchy-warning animate-shake">
           Whoa there! You've reached the max limit.
@@ -63,20 +62,20 @@ function App() {
         {todos.map(todo => (
           <li
             key={todo.id}
-
             className={`sketchy-list-item ${deletingIds.includes(todo.id) ? 'deleting' : ''}`}
           >
-            <span
-              onClick={() => dispatch(toggleTodo(todo.id))}
-              className="sketchy-text"
-              style={{
-                textDecoration: todo.completed ? 'line-through' : 'none',
-                cursor: 'pointer',
-                color: todo.completed ? '#888' : '#000'
-              }}
-            >
-              {todo.text}
-            </span>
+
+            {/* --- NEW CHECKBOX INTEGRATION --- */}
+            <label className="todo-item" htmlFor={`todo-${todo.id}`}>
+              <input
+                type="checkbox"
+                id={`todo-${todo.id}`}
+                checked={todo.completed}
+                onChange={() => dispatch(toggleTodo(todo.id))}
+              />
+              <span className="custom-box"></span>
+              <span className="todo-text">{todo.text}</span>
+            </label>
 
             <button
               className="delete-btn"
