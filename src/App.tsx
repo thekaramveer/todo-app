@@ -74,7 +74,9 @@ function App() {
                 onChange={() => dispatch(toggleTodo(todo.id))}
               />
               <span className="custom-box"></span>
-              <span className="todo-text">{todo.text}</span>
+              <span className="todo-text-wrapper">
+                <span className="todo-text">{todo.text}</span>
+              </span>
             </label>
 
             <button

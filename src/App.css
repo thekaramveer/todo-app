@@ -163,25 +163,42 @@ body {
     color: #2d2d2d;
 }
 
-.todo-item .todo-text::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0%;
-    height: 2px;
-    background-color: currentColor;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.todo-text-wrapper {
+    flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
+
+/* text gets the magic background-gradient line */
+.todo-item .todo-text {
+    font-size: 18px;
+    color: #2d2d2d;
+
+    display: inline;
+
+    /* 2px tall gradient that acts as the line */
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 50%;
+    /* Start at left, align middle */
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    /* Start at 0 width */
+
+    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+}
+
+/* Animate the background width to 100% when checked */
+.todo-item input[type="checkbox"]:checked~.todo-text-wrapper .todo-text {
+    color: #888;
+    background-size: 100% 2px;
+}
+
+
+
 
 .todo-item input[type="checkbox"]:checked~.todo-text {
     color: #888;
 }
-
-.todo-item input[type="checkbox"]:checked~.todo-text::after {
-    width: 100%;
-}
-
 
 /* --- SIMPLE CROSS DELETE BUTTON --- */
 .delete-btn {
